@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      moor_generator:
+        options:
+          skip_verification_code: true
+          apply_converters_on_variables: true
+          sqlite:
+            modules:
+              - fts5

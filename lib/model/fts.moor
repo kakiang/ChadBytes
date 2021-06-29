@@ -1,0 +1,18 @@
+import 'database.dart';
+
+CREATE VIRTUAL TABLE fts_idx USING fts5(link UNINDEXED, title, summary, content=articles);
+-- Triggers to keep the FTS index up to date.
+CREATE TRIGGER articles_ai AFTER INSERT ON articles BEGIN
+  INSERT INTO fts_idx(rowid, link, title, summary) VALUES (new.rowid, new.link, new.title, new.summary);
+END;
+CREATE TRIGGER articles_ad AFTER DELETE ON articles BEGIN
+  INSERT INTO fts_idx(fts_idx, rowid, link, title, summary) VALUES('delete', old.rowid, old.link, old.title, old.summary);
+END;
+CREATE TRIGGER articles_au AFTER UPDATE ON articles BEGIN
+  INSERT INTO fts_idx(fts_idx, rowid, link, title, summary) VALUES('delete', old.rowid, old.link, old.title, old.summary);
+  INSERT INTO fts_idx(rowid, link, title, summary) VALUES (new.rowid, new.link, new.title, new.summary);
+END;
+
+_articlesWithFts5: SELECT * FROM fts_idx WHERE fts_idx MATCH ? ORDER BY rank;
+
+_countArticles: SELECT COUNT(*) FROM articles;
