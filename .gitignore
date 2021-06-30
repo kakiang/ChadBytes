@@ -11,7 +11,7 @@
 .svn/
 google-services.json
 key.properties
-screenshots
+#screenshots
 
 # IntelliJ related
 *.iml
