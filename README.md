@@ -25,5 +25,10 @@ Application Android qui présente les actualités sur le Tchad sur un fil d'actu
     &nbsp;
 </div>
 
+# Privacy statement
+Cette application ne collecte ni les données personnelles de l'utilisateur ni les informations sur les
+appareils qui l'installe.
+
+This app collects neither user data nor device data.
 
 [Télécharger l'application android Chad Bytes](https://drive.google.com/file/d/1CHyjYUWcWSTEkYwVgiTeR4DZ09pNvUni/view?usp=sharing)
